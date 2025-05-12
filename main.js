@@ -10,7 +10,10 @@ async function getRecipe(url) {
   const data = await response.json();
   return data;
 }
+
+
 async function getChefBirthday(id) {
+    
   const ricetta = await getRecipe(`https://dummyjson.com/recipes/${id}`);
   
 
@@ -20,6 +23,13 @@ async function getChefBirthday(id) {
 }
 
 (async () => {
-   const compleanno = await getChefBirthday(3);
+    try{
+        const compleanno = await getChefBirthday(3);
    console.log("La data di nascita è :",compleanno);
+    }catch (error) {
+        console.error("Error", error);
+    }finally{
+        console.log("Fine");
+    }
+  
 })();
