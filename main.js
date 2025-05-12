@@ -7,6 +7,8 @@ Restituire la data di nascita dello chef*/
 /*Attualmente, se la prima richiesta non trova una ricetta, la seconda richiesta potrebbe comunque essere eseguita causando errori a cascata.
 Modifica getChefBirthday(id) per intercettare eventuali errori prima di fare la seconda richiesta. */
 
+/*Utilizza la libreria dayjs per formattare la data di nascita nel formato giorno/mese/anno. */
+
 
 async function getRecipe(url) {
   const response = await fetch(url);
@@ -35,7 +37,7 @@ async function getChefBirthday(id) {
 (async () => {
     try{
         const compleanno = await getChefBirthday(3);
-   console.log("La data di nascita è :",compleanno);
+   console.log("La data di nascita è :",dayjs(compleanno).format("DD/MM/YYYY"));
     }catch (error) {
         console.error("Error", error);
     }finally{
